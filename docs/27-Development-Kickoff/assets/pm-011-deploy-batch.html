@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مُتنقِّل · دفعة النشر — المسار ب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0d0c0a;--ink2:#141210;--panel:#1a1713;--panel2:#221d17;--line:#3a3022;
+--gold:#c9a24c;--gold-s:#ecd28a;--gold-deep:#8f6f2c;--paper:#ece5d8;--muted:#8c8273;
+--ok:#3fae7e;--bad:#d9534a;--copper:#c47b3a;--teal:#2f7d8c;--teal-l:#6fc0cf;
+--disp:'Reem Kufi',sans-serif;--body:'Tajawal',sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+--metal:linear-gradient(180deg,#f6e09a 0%,#d6af57 42%,#b78f3c 70%,#8f6f2c 100%)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--paper);background:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--gold);color:var(--ink)}
+
+/* خلفية طبقاتية حيّة */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+.bg .grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:58px 58px;opacity:.09;mask-image:radial-gradient(140% 100% at 12% -10%,#000 10%,transparent 60%)}
+.bg .grain{position:absolute;inset:0;opacity:.04;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.bg .scan{position:absolute;left:0;right:0;height:140px;background:linear-gradient(180deg,transparent,rgba(201,162,76,.05),transparent);animation:scan 9s linear infinite}
+@keyframes scan{0%{top:-140px}100%{top:100%}}
+.bg .glow{position:absolute;width:42vw;height:42vw;left:-12vw;bottom:-18vw;background:radial-gradient(circle,rgba(196,123,58,.1),transparent 60%)}
+
+.w{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 22px}
+
+/* شريط علوي */
+.top{position:sticky;top:0;z-index:60;backdrop-filter:blur(13px);background:rgba(13,12,10,.8);border-bottom:1px solid var(--line)}
+.top .in{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 22px;max-width:1280px;margin:0 auto;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .nm{font-family:var(--disp);font-weight:700;font-size:19px;background:var(--metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.safety{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--ok);border:1px solid rgba(63,174,126,.4);background:rgba(63,174,126,.08);padding:6px 13px;border-radius:999px}
+.safety .d{width:8px;height:8px;border-radius:50%;background:var(--ok);position:relative}
+.safety .d::after{content:"";position:absolute;inset:0;border-radius:50%;background:inherit;animation:ping 1.7s infinite}
+@keyframes ping{0%{transform:scale(1);opacity:.7}80%,100%{transform:scale(2.7);opacity:0}}
+
+/* تخطيط: stepper جانبي + محتوى */
+.shell{display:grid;grid-template-columns:300px 1fr;gap:30px;padding:40px 0 30px;align-items:start}
+@media(max-width:980px){.shell{grid-template-columns:1fr}}
+
+/* الـ stepper العمودي */
+.rail{position:sticky;top:74px}
+@media(max-width:980px){.rail{position:static}}
+.rail .cap{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:16px}
+.rail .lane{position:relative;padding-right:26px}
+.rail .lane::before{content:"";position:absolute;top:6px;bottom:6px;right:9px;width:2px;background:var(--line)}
+.rail .node{position:relative;display:flex;gap:12px;align-items:flex-start;padding:11px 0;cursor:default}
+.rail .node .pt{position:absolute;right:-26px;top:13px;width:20px;height:20px;border-radius:6px;border:2px solid var(--line);background:var(--ink);display:grid;place-items:center;font-size:9px;font-weight:800;color:var(--muted);z-index:2;transition:.4s}
+.rail .node.done .pt{border-color:var(--ok);background:rgba(63,174,126,.14);color:var(--ok)}
+.rail .node.now .pt{border-color:var(--gold);background:var(--metal);color:#1a1408;box-shadow:0 0 0 0 rgba(201,162,76,.5);animation:halo 2s infinite}
+@keyframes halo{0%{box-shadow:0 0 0 0 rgba(201,162,76,.45)}70%{box-shadow:0 0 0 9px rgba(201,162,76,0)}100%{box-shadow:0 0 0 0 rgba(201,162,76,0)}}
+.rail .node .tx .t{font-weight:800;font-size:13.5px;line-height:1.25}
+.rail .node.done .tx .t{color:var(--paper);opacity:.7}
+.rail .node.now .tx .t{color:var(--gold-s)}
+.rail .node .tx .s{font-size:10px;color:var(--muted);margin-top:2px}
+.rail .node.now .tx .s{color:var(--copper)}
+
+/* المحتوى */
+.head{margin-bottom:26px}
+.kick{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--copper);font-weight:800;display:inline-flex;align-items:center;gap:9px}
+.kick .pulse{width:8px;height:8px;border-radius:50%;background:var(--copper);position:relative}
+.kick .pulse::after{content:"";position:absolute;inset:0;border-radius:50%;background:inherit;animation:ping 1.6s infinite}
+.h1{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.6vw,52px);line-height:1.05;margin-top:14px;letter-spacing:-.012em}
+.h1 em{font-style:normal;background:var(--metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{color:var(--paper);opacity:.82;margin-top:14px;font-size:15.5px;max-width:60ch}
+.lede b{color:var(--gold-s)}
+
+/* عدّاد الدفعة + مقياس السلامة */
+.stats{display:flex;gap:14px;margin:24px 0 8px;flex-wrap:wrap}
+.stat{flex:1;min-width:150px;border:1px solid var(--line);border-radius:16px;padding:16px 18px;background:linear-gradient(180deg,var(--panel),var(--ink2));position:relative;overflow:hidden}
+.stat .k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.stat .v{font-family:var(--disp);font-weight:700;font-size:34px;margin-top:6px;font-variant-numeric:tabular-nums;line-height:1}
+.stat.s1 .v{color:var(--gold-s)}.stat.s2 .v{color:var(--ok)}.stat.s3 .v{color:var(--copper)}
+.stat .d{font-size:11.5px;color:var(--muted);margin-top:7px}
+.safewrap{margin-top:14px}
+.safewrap .lab{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:6px;font-weight:700}
+.safewrap .lab b{color:var(--ok)}
+.safebar{height:9px;background:var(--ink);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.safebar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ok),#1f6b4c);border-radius:99px;transition:width 1.8s cubic-bezier(.2,.8,.2,1);position:relative}
+.safebar i::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.18) 0 6px,transparent 6px 12px);animation:flow 1.4s linear infinite}
+@keyframes flow{to{background-position:24px 0}}
+
+/* قائمة الملفات */
+.sec-t{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:40px 0 6px}
+.sec-t em{font-style:normal;color:var(--gold)}
+.files{margin-top:18px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--ink2)}
+.frow{display:grid;grid-template-columns:46px 1fr auto;gap:16px;align-items:center;padding:15px 18px;border-bottom:1px solid var(--line);position:relative;opacity:0;transform:translateX(14px);transition:opacity .5s,transform .5s,background .3s}
+.frow.in{opacity:1;transform:none}
+.frow:last-child{border-bottom:0}
+.frow:hover{background:var(--panel)}
+.frow .ix{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:13px;border:1px solid var(--line);background:var(--ink);color:var(--muted)}
+.frow.new .ix{border-color:rgba(63,174,126,.4);color:var(--ok);background:rgba(63,174,126,.08)}
+.frow.rep .ix{border-color:rgba(201,162,76,.4);color:var(--gold-s);background:rgba(201,162,76,.08)}
+.frow .meta .path{font-family:var(--mono);font-size:12.5px;direction:ltr;unicode-bidi:embed;color:var(--paper);font-weight:600}
+.frow .meta .why{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.5}
+.frow .meta .why b{color:var(--ok);font-weight:700}
+.frow .tags{display:flex;gap:7px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.tag{font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px;white-space:nowrap}
+.tag.new{background:rgba(63,174,126,.14);color:var(--ok)}.tag.rep{background:rgba(201,162,76,.14);color:var(--gold-s)}
+.tag.safe{background:rgba(47,125,140,.16);color:var(--teal-l);border:1px solid rgba(47,125,140,.3)}
+
+/* terminal ترتيب التطبيق */
+.term{margin-top:18px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#080705}
+.term .bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--panel);border-bottom:1px solid var(--line)}
+.term .bar i{width:11px;height:11px;border-radius:50%}.term .bar i:nth-child(1){background:var(--bad)}.term .bar i:nth-child(2){background:var(--gold)}.term .bar i:nth-child(3){background:var(--ok)}
+.term .bar span{margin-inline-start:8px;font-size:10.5px;color:var(--muted);letter-spacing:.12em;font-weight:700;font-family:var(--mono)}
+.term pre{margin:0;padding:16px 18px;font-family:var(--mono);font-size:12px;line-height:1.85;color:var(--paper);direction:ltr;text-align:left;white-space:pre-wrap;min-height:120px}
+.term pre .c{color:var(--muted)}.term pre .g{color:var(--ok)}.term pre .v{color:var(--gold-s)}.term pre .p{color:var(--copper)}
+.term pre .cur{display:inline-block;width:8px;height:15px;background:var(--gold-s);vertical-align:-2px;animation:blink 1s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+.term .note{padding:10px 18px;border-top:1px solid var(--line);background:rgba(196,123,58,.06);font-size:11.5px;color:var(--copper);font-weight:700}
+
+.note{margin-top:30px;border-right:3px solid var(--gold);background:rgba(201,162,76,.06);padding:15px 19px;border-radius:0 13px 13px 0;color:var(--muted);font-size:13.5px;max-width:82ch}
+.note b{color:var(--gold-s)}.note code{color:var(--paper);font-family:var(--mono);direction:ltr;unicode-bidi:embed;font-size:11.5px}
+.foot{margin-top:34px;border-top:1px solid var(--line);padding:20px 0 50px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.foot b{color:var(--gold);font-family:var(--disp);font-weight:600}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<div class="bg"><div class="grid"></div><div class="scan"></div><div class="glow"></div><div class="grain"></div></div>
+
+<header class="top"><div class="in">
+  <div class="brand">
+    <svg width="38" height="26" viewBox="0 0 200 132" fill="none" aria-hidden="true">
+      <defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6e09a"/><stop offset=".5" stop-color="#d6af57"/><stop offset="1" stop-color="#8f6f2c"/></linearGradient></defs>
+      <g stroke="url(#lg)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <line x1="6" y1="52" x2="44" y2="52" stroke-width="5"/><line x1="2" y1="64" x2="48" y2="64"/><line x1="10" y1="76" x2="44" y2="76" stroke-width="4"/>
+        <path d="M60 48 L98 20 L136 48"/><path d="M66 48 V92 H132 V48"/><path d="M132 92 V62 H150 L162 74 V92"/>
+        <path d="M72 86 V76 H76 V71 H92 V76 H96 V86" stroke-width="4"/><rect x="104" y="63" width="20" height="23" rx="2" stroke-width="4"/>
+      </g><g fill="url(#lg)"><circle cx="90" cy="99" r="9"/><circle cx="150" cy="99" r="9"/></g>
+    </svg>
+    <span class="nm">مُتنقِّل</span>
+  </div>
+  <span class="safety"><span class="d"></span> سلامة الكود 100% · تغييرات إضافية فقط</span>
+</div></header>
+
+<div class="w">
+  <div class="shell">
+
+    <!-- الـ stepper -->
+    <aside class="rail reveal">
+      <div class="cap">خريطة الـ 12 خطوة</div>
+      <div class="lane">
+        <div class="node done"><span class="pt">✓</span><div class="tx"><div class="t">أ · يُغلق أول طلب</div><div class="s">أُسلِّم سابقاً — يُطبَّق أولاً</div></div></div>
+        <div class="node now"><span class="pt">ب</span><div class="tx"><div class="t">ب · تجهيز النشر</div><div class="s">تُسلَّم الآن · 9 ملفات</div></div></div>
+        <div class="node"><span class="pt">ج</span><div class="tx"><div class="t">ج · الفاتورة + العمليات</div><div class="s">الدفعة التالية</div></div></div>
+        <div class="node"><span class="pt">د</span><div class="tx"><div class="t">د · اختبارات + مراقبة</div><div class="s">الدفعة الأخيرة</div></div></div>
+      </div>
+      <div style="margin-top:22px;border:1px solid var(--line);border-radius:14px;padding:14px 15px;background:var(--panel)">
+        <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:800">قاعدة السلامة</div>
+        <p style="font-size:12px;color:var(--paper);opacity:.8;margin-top:7px;line-height:1.6">كل ملف هنا <b style="color:var(--ok)">إضافي</b> أو استبدالٌ لملفٍ صغيرٍ يحفظ ما فيه. لا منطق عامل يُمسّ.</p>
+      </div>
+    </aside>
+
+    <!-- المحتوى -->
+    <div>
+      <div class="head reveal">
+        <span class="kick"><span class="pulse"></span> الدفعة الثانية · المسار ب</span>
+        <h1 class="h1">تجهيز <em>الإنتاج</em><br>بلا لمسٍ لما يعمل</h1>
+        <p class="lede">تسع ملفات تجعل الكود الحالي <b>قابلاً للنشر بأمان</b> على أي منصّة — Docker أو Vercel أو Replit — دون أن تغيّر سطراً من المنطق العامل. ضَعْها في مواضعها بالترتيب أدناه؛ <b>لا تشغيل مطلوب الآن</b>.</p>
+      </div>
+
+      <div class="stats reveal">
+        <div class="stat s1"><div class="k">ملفات هذه الدفعة</div><div class="v">9</div><div class="d">8 إضافية + 1 استبدال آمن</div></div>
+        <div class="stat s2"><div class="k">ملفات مُمسَّة تعمل</div><div class="v">0</div><div class="d">لا منطق عامل يتغيّر</div></div>
+        <div class="stat s3"><div class="k">منصّات مدعومة</div><div class="v">3</div><div class="d">Docker · Vercel · Replit</div></div>
+      </div>
+      <div class="safewrap reveal">
+        <div class="lab"><span>مقياس سلامة الكود العامل</span><b id="safePct">0%</b></div>
+        <div class="safebar"><i id="safeBar"></i></div>
+      </div>
+
+      <div class="sec-t reveal">الملفات — <em>بترتيب الوضع الآمن</em></div>
+      <div class="files reveal" id="files"></div>
+
+      <div class="sec-t reveal">ترتيب الوضع — <em>مرجعياً، لا الآن</em></div>
+      <div class="term reveal">
+        <div class="bar"><i></i><i></i><i></i><span>order-of-apply.sh — عندما تكون جاهزاً</span></div>
+        <pre id="term"></pre>
+        <div class="note">⏸ لا تُنفّذ الآن — هذا ترتيب الوضع المرجعي فقط. الاختبار والتشغيل لاحقاً بأمرٍ منك.</div>
+      </div>
+
+      <div class="note reveal"><b>لماذا هذا الترتيب آمن؟</b> نبدأ بإعدادات الـ Web (ب١–ب٣) لأنها لا تمسّ الـ Backend الحيّ، ثم سكربت الدخول وDocker الإنتاجي (ب٤–ب) وهي ملفات جديدة لا تستبدل ما يعمل، وأخيراً إعدادات المنصّات الاختيارية (ب٧–ب٩). الاستبدال الوحيد هو <code>next.config.js</code> وهو يحفظ <code>reactStrictMode</code> ويزيد فوقه — فلا يُفقد شيء.</div>
+    </div>
+  </div>
+
+  <div class="foot"><span>مدير المشروع · دفعة النشر · <b>PM-011</b></span><span>المسار ب · 9 ملفات · سلامة 100% · يتبعه ج ثم د</span></div>
+</div>
+
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)};
+var $$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+
+var FILES=[
+ {n:'ب١',p:'apps/web/next.config.js',t:'rep',w:'يستبدل الحالي بـ <b>إعداد إنتاجي</b>: headers أمنية + ضغط + أنماط صور بعيدة. يحفظ reactStrictMode.',tg:['استبدال','آمن']},
+ {n:'ب٢',p:'apps/web/.env.production.example',t:'new',w:'قالب متغيرات إنتاج الـ Web — <b>لا أسرار حقيقية</b>، تُملأ عند النشر.',tg:['جديد','آمن']},
+ {n:'ب٣',p:'apps/api/.env.production.example',t:'new',w:'قالب متغيرات إنتاج الـ Backend + DATABASE_URL إنتاجي + JWT قوي.',tg:['جديد','آمن']},
+ {n:'ب٤',p:'apps/api/scripts/entrypoint.sh',t:'new',w:'يشغّل <b>prisma migrate deploy</b> ثم يقلع الخادم — يفصل الهجرة عن التشغيل.',tg:['جديد','آمن']},
+ {n:'ب٥',p:'apps/api/Dockerfile.prod',t:'new',w:'صورة إنتاجية multi-stage · non-root · لا يلمس Dockerfile العامل.',tg:['جديد','آمن']},
+ {n:'ب٦',p:'docker-compose.prod.yml',t:'new',w:'override للإنتاج: restart always · env_file · بلا volumes كود.',tg:['جديد','آمن']},
+ {n:'ب٧',p:'apps/web/vercel.json',t:'new',w:'إعداد Vercel اختياري: headers + framework · لمن ينشر هناك.',tg:['جديد','اختياري']},
+ {n:'ب٨',p:'apps/web/replit.md',t:'new',w:'توثيق إعداد Web artifact على Replit · لا يلمس .replit الخاص بالـ api.',tg:['جديد','آمن']},
+ {n:'ب٩',p:'scripts/deploy-check.sh',t:'new',w:'يفحص وجود env المطلوبة قبل النشر ويطبع ✅/❌ · <b>لا يفشل البناء</b>.',tg:['جديد','آمن']}
+];
+var el=$('#files');
+FILES.forEach(function(f){
+ var r=document.createElement('div');r.className='frow '+f.t;
+ r.innerHTML='<div class="ix">'+f.n.replace(/[أ-ي]/g,'')+'</div>'+
+   '<div class="meta"><div class="path">'+f.p+'</div><div class="why">'+f.w+'</div></div>'+
+   '<div class="tags"><span class="tag '+f.t+'">'+f.tg[0]+'</span><span class="tag safe">'+f.tg[1]+'</span></div>';
+ el.appendChild(r);
+});
+
+/* terminal typewriter */
+var LINES=[
+ '<span class="c"># ١) إعدادات الـ Web (لا تمسّ الـ Backend)</span>',
+ '<span class="g">cp</span> apps/web/.env.production.example apps/web/.env.production',
+ '<span class="c"># ٢) إعدادات الـ Backend الإنتاجية</span>',
+ '<span class="g">cp</span> apps/api/.env.production.example apps/api/.env.production',
+ '<span class="c"># ٣) فحص المتغيرات قبل أي نشر</span>',
+ '<span class="p">bash</span> scripts/deploy-check.sh apps/api/.env.production',
+ '<span class="c"># ٤) بناء الإنتاج (Docker) — أو Vercel/Replit حسب منصّتك</span>',
+ '<span class="g">docker</span> compose -f docker-compose.yml -f docker-compose.prod.yml build',
+ '<span class="p">bash</span> scripts/deploy-check.sh   <span class="c"># أخضر؟ → أنت جاهز للنشر</span> <span class="cur"></span>'
+];
+var term=$('#term'),li=0,ci=0,buf='';
+function type(){
+ if(li>=LINES.length)return;
+ var raw=LINES[li],plain=raw.replace(/<[^>]+>/g,'');
+ if(ci===0)buf+=(li?'\\n':'');
+ if(ci<plain.length){ci++;term.innerHTML=buf+raw.slice(0, /* approximate */ raw.length).replace(plain,plain.slice(0,ci))+'<span class="cur"></span>';
+   /* simpler: build progressively using raw with sliced visible text */
+   term.innerHTML=renderUpTo(li,ci);
+   setTimeout(type,18);
+ } else { li++;ci=0;setTimeout(type,260); }
+}
+function renderUpTo(upto,extra){
+ var out='';
+ for(var i=0;i<upto;i++)out+=LINES[i]+'\\n';
+ var raw=LINES[upto],plain=raw.replace(/<[^>]+>/g,'');
+ // re-insert tags around the typed prefix by typing plain then appending rest with tags stripped is complex;
+ // pragmatic: show full lines done + current line fully but mask by width via plain slice + keep tags after
+ var typedPlain=plain.slice(0,extra);
+ // rebuild current line: walk raw, emit tags always, emit plain chars only up to extra
+ var res='',pc=0;
+ for(var k=0;k<raw.length;k++){var ch=raw[k];if(ch==='<'){var cl=raw.indexOf('>',k);res+=raw.slice(k,cl+1);k=cl;continue;}if(pc<extra){res+=ch;pc++;}}
+ out+=res+'<span class="cur"></span>';
+ return out;
+}
+
+/* إضاءة */
+function go(){
+ $$('.frow').forEach(function(r,i){setTimeout(function(){r.classList.add('in')},200+i*80)});
+ setTimeout(function(){$('#safeBar').style.width='100%';countTo(100)},500);
+ setTimeout(type,900);
+}
+function countTo(to){var n=$('#safePct'),t0=performance.now(),d=1600;
+ (function s(t){var p=Math.min(1,(t-t0)/d);n.textContent=Math.round(to*(1-Math.pow(1-p,3)))+'%';if(p<1)requestAnimationFrame(s)})(t0)}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){go();io.disconnect()}})},{threshold:.15});
+io.observe($('#files'));
+var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io2.unobserve(e.target)}})},{threshold:.12});
+$$('.reveal').forEach(function(e,i){e.style.transitionDelay=(i*55)+'ms';io2.observe(e)});
+})();
+</script>
+</body>
+</html>

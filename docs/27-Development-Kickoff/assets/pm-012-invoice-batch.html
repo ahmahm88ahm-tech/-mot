@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مُتنقِّل · دفعة الفاتورة والعمليات — المسار ج</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0d0c0a;--ink2:#141210;--panel:#1a1713;--panel2:#221d17;--line:#3a3022;
+--gold:#c9a24c;--gold-s:#ecd28a;--gold-deep:#8f6f2c;--paper:#ece5d8;--muted:#8c8273;
+--ok:#3fae7e;--bad:#d9534a;--copper:#c47b3a;--teal:#2f7d8c;--teal-l:#6fc0cf;
+/* ورقة الفاتورة — عاجي دافئ، لتبدو وثيقةً مضاءة على الفحم */
+--doc:#f4eddd;--doc2:#e9dfc8;--docink:#221c12;--docmut:#7a6c52;--docline:#cdbf9f;
+--disp:'Reem Kufi',sans-serif;--body:'Tajawal',sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+--metal:linear-gradient(180deg,#f6e09a 0%,#d6af57 42%,#b78f3c 70%,#8f6f2c 100%)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--paper);background:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--gold);color:var(--ink)}
+
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+.bg .grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:60px 60px;opacity:.085;mask-image:radial-gradient(140% 100% at 88% -10%,#000 8%,transparent 58%)}
+.bg .grain{position:absolute;inset:0;opacity:.04;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.bg .scan{position:absolute;left:0;right:0;height:160px;background:linear-gradient(180deg,transparent,rgba(201,162,76,.045),transparent);animation:scan 10s linear infinite}
+@keyframes scan{0%{top:-160px}100%{top:100%}}
+.bg .glow{position:absolute;width:44vw;height:44vw;right:-14vw;bottom:-20vw;background:radial-gradient(circle,rgba(196,123,58,.1),transparent 60%)}
+.w{position:relative;z-index:1;max-width:1300px;margin:0 auto;padding:0 22px}
+
+.top{position:sticky;top:0;z-index:70;backdrop-filter:blur(13px);background:rgba(13,12,10,.82);border-bottom:1px solid var(--line)}
+.top .in{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 22px;max-width:1300px;margin:0 auto;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .nm{font-family:var(--disp);font-weight:700;font-size:19px;background:var(--metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.safety{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--ok);border:1px solid rgba(63,174,126,.4);background:rgba(63,174,126,.08);padding:6px 13px;border-radius:999px}
+.safety .d{width:8px;height:8px;border-radius:50%;background:var(--ok);position:relative}
+.safety .d::after{content:"";position:absolute;inset:0;border-radius:50%;background:inherit;animation:ping 1.7s infinite}
+@keyframes ping{0%{transform:scale(1);opacity:.7}80%,100%{transform:scale(2.7);opacity:0}}
+
+/* ═══ الافتتاح: الفاتورة الحيّة + السياق ═══ */
+.open{display:grid;grid-template-columns:1fr 420px;gap:46px;align-items:center;padding:54px 0 30px}
+@media(max-width:980px){.open{grid-template-columns:1fr;gap:34px}}
+.kick{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--copper);font-weight:800;display:inline-flex;align-items:center;gap:9px}
+.kick .pulse{width:8px;height:8px;border-radius:50%;background:var(--copper);position:relative}
+.kick .pulse::after{content:"";position:absolute;inset:0;border-radius:50%;background:inherit;animation:ping 1.6s infinite}
+.h1{font-family:var(--disp);font-weight:700;font-size:clamp(31px,5vw,58px);line-height:1.04;margin-top:14px;letter-spacing:-.012em}
+.h1 em{font-style:normal;background:var(--metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{color:var(--paper);opacity:.82;margin-top:16px;font-size:15.5px;max-width:52ch}
+.lede b{color:var(--gold-s)}
+.ministats{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.ms{border:1px solid var(--line);border-radius:13px;padding:11px 15px;background:var(--panel);min-width:96px}
+.ms .v{font-family:var(--disp);font-weight:700;font-size:24px;font-variant-numeric:tabular-nums}
+.ms.s1 .v{color:var(--gold-s)}.ms.s2 .v{color:var(--ok)}.ms.s3 .v{color:var(--copper)}
+.ms .k{font-size:10px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;font-weight:800;margin-top:2px}
+
+/* ═══ ورقة الفاتورة الحيّة ═══ */
+.docwrap{position:relative;perspective:1400px}
+.docwrap::before{content:"";position:absolute;inset:-18px;background:radial-gradient(circle at 50% 30%,rgba(231,181,60,.16),transparent 65%);filter:blur(6px);z-index:-1}
+.invoice{background:linear-gradient(180deg,var(--doc),var(--doc2));color:var(--docink);border-radius:6px;padding:26px 24px 22px;font-family:var(--body);
+  box-shadow:0 40px 80px -34px rgba(0,0,0,.85),0 2px 0 rgba(255,255,255,.4) inset;position:relative;transform:rotateY(-5deg) rotateX(2deg);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.docwrap:hover .invoice{transform:rotateY(0) rotateX(0)}
+.invoice::after{content:"";position:absolute;inset:0;border-radius:6px;background:repeating-linear-gradient(0deg,transparent 0 27px,rgba(122,108,82,.05) 27px 28px);pointer-events:none}
+.inv-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;border-bottom:2px solid var(--docink);padding-bottom:14px}
+.inv-brand{display:flex;align-items:center;gap:10px}
+.inv-brand svg{flex-shrink:0}
+.inv-brand .nm{font-family:var(--disp);font-weight:700;font-size:20px;color:var(--docink);line-height:1}
+.inv-brand .sub{font-size:9.5px;color:var(--docmut);letter-spacing:.04em;margin-top:3px}
+.inv-tag{text-align:left}
+.inv-tag .t{font-family:var(--disp);font-weight:700;font-size:13px;color:var(--gold-deep);letter-spacing:.02em}
+.inv-tag .no{font-family:var(--mono);font-size:11px;color:var(--docmut);margin-top:3px;direction:ltr}
+.inv-meta{display:flex;justify-content:space-between;gap:14px;margin-top:14px;font-size:11px}
+.inv-meta .blk .k{color:var(--docmut);font-size:9px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.inv-meta .blk .v{color:var(--docink);font-weight:700;margin-top:2px;font-family:var(--mono);direction:ltr}
+.inv-meta .blk.r{text-align:left}
+.inv-meta .blk.r .v{font-family:var(--body);direction:rtl}
+
+.inv-table{margin-top:16px;border-collapse:collapse;width:100%;font-size:11.5px}
+.inv-table th{background:var(--docink);color:var(--doc);font-weight:700;padding:7px 9px;text-align:right;font-size:10px;letter-spacing:.04em}
+.inv-table th.l{text-align:left}
+.inv-table td{padding:8px 9px;border-bottom:1px solid var(--docline)}
+.inv-table td.num{font-family:var(--mono);text-align:left;direction:ltr}
+.inv-row{opacity:0;transform:translateY(6px)}
+.inv-row.in{opacity:1;transform:none;transition:opacity .4s,transform .4s}
+
+.inv-totals{margin-top:12px;margin-inline-start:auto;width:62%;font-size:11.5px}
+.inv-totals .ln{display:flex;justify-content:space-between;padding:5px 0}
+.inv-totals .ln .v{font-family:var(--mono);direction:ltr}
+.inv-totals .grand{border-top:2px solid var(--docink);margin-top:4px;padding-top:8px;font-family:var(--disp);font-weight:700;font-size:16px}
+.inv-totals .grand .v{font-family:var(--mono);font-size:18px}
+
+.inv-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;margin-top:18px;padding-top:14px;border-top:1px dashed var(--docline)}
+.qr{display:grid;grid-template-columns:repeat(25,4px);grid-template-rows:repeat(25,4px);gap:0;border:3px solid var(--docink);padding:3px;background:#fff}
+.qr i{width:4px;height:4px;background:transparent;opacity:0}
+.qr i.on{background:var(--docink)}
+.qr.go i.on{animation:qpop .04s forwards}
+@keyframes qpop{to{opacity:1}}
+.inv-foot .note{font-size:9px;color:var(--docmut);max-width:150px;line-height:1.5}
+.inv-foot .note b{color:var(--gold-deep)}
+
+/* الختم */
+.stamp{position:absolute;left:18px;bottom:64px;width:96px;height:96px;border:3px double var(--copper);border-radius:50%;display:grid;place-items:center;text-align:center;color:var(--copper);font-family:var(--disp);font-weight:700;transform:rotate(-14deg) scale(1.7);opacity:0;mix-blend-mode:multiply}
+.stamp.in{animation:stampin .5s cubic-bezier(.2,1.5,.4,1) forwards}
+@keyframes stampin{to{transform:rotate(-14deg) scale(1);opacity:.92}}
+.stamp .a{font-size:8px;letter-spacing:.1em}
+.stamp .b{font-size:11px;line-height:1.15;margin:3px 0}
+.stamp .c{font-size:7px;letter-spacing:.06em}
+
+/* شريط الضريبة */
+.taxbar{margin-top:18px}
+.taxbar .lab{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);font-weight:700;margin-bottom:6px}
+.taxbar .lab b{color:var(--gold-s)}
+.taxbar .bar{height:8px;background:var(--ink2);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.taxbar .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold-deep),var(--gold));border-radius:99px;transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+
+/* ═══ الأقسام ═══ */
+.sec-t{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:50px 0 6px}
+.sec-t em{font-style:normal;color:var(--gold)}
+
+/* تبويبات */
+.tabs{display:flex;gap:6px;margin:18px 0 0;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:transparent;color:var(--muted);padding:10px 20px;border-radius:999px 999px 0 0;font-family:var(--body);font-weight:800;font-size:13px;cursor:pointer;transition:.25s;border-bottom:0}
+.tab:hover{color:var(--paper);border-color:var(--gold-deep)}
+.tab.on{background:var(--panel);color:var(--gold-s);border-color:var(--line)}
+.pane{display:none;border:1px solid var(--line);border-radius:0 16px 16px 16px;background:var(--ink2);padding:6px;animation:fi .4s ease}
+.pane.on{display:block}@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* manifest الملفات */
+.frow{display:grid;grid-template-columns:44px 1fr auto;gap:15px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line);position:relative;opacity:0;transform:translateX(12px);transition:opacity .5s,transform .5s,background .3s}
+.frow.in{opacity:1;transform:none}.frow:last-child{border-bottom:0}.frow:hover{background:var(--panel)}
+.frow .ix{width:44px;height:44px;border-radius:11px;display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:12px;border:1px solid var(--line);background:var(--ink);color:var(--muted)}
+.frow.new .ix{border-color:rgba(63,174,126,.4);color:var(--ok);background:rgba(63,174,126,.08)}
+.frow.mod .ix{border-color:rgba(201,162,76,.4);color:var(--gold-s);background:rgba(201,162,76,.08)}
+.frow .meta .path{font-family:var(--mono);font-size:12px;direction:ltr;unicode-bidi:embed;color:var(--paper);font-weight:600}
+.frow .meta .why{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.5}
+.frow .meta .why b{color:var(--ok);font-weight:700}
+.frow .tags{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.tag{font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:4px 9px;border-radius:999px;white-space:nowrap}
+.tag.new{background:rgba(63,174,126,.14);color:var(--ok)}.tag.mod{background:rgba(201,162,76,.14);color:var(--gold-s)}.tag.safe{background:rgba(47,125,140,.16);color:var(--teal-l);border:1px solid rgba(47,125,140,.3)}
+
+/* وثائق SOP — مستند رسمي لا بطاقة */
+.sopdoc{background:linear-gradient(180deg,var(--doc),var(--doc2));color:var(--docink);border-radius:8px;padding:30px 28px;font-family:var(--body);position:relative;box-shadow:0 30px 70px -34px rgba(0,0,0,.8)}
+.sopdoc::before{content:"سري — داخلي";position:absolute;top:14px;left:14px;font-size:9px;font-weight:800;letter-spacing:.14em;color:var(--bad);border:1.5px solid var(--bad);padding:3px 9px;border-radius:5px;transform:rotate(-3deg)}
+.sopdoc h3{font-family:var(--disp);font-weight:700;font-size:22px;color:var(--docink);border-bottom:2px solid var(--docink);padding-bottom:10px}
+.sopdoc .role{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:13px 0;border-bottom:1px solid var(--docline);align-items:start}
+.sopdoc .role:last-of-type{border-bottom:0}
+.sopdoc .role .who{font-family:var(--disp);font-weight:700;font-size:13px;color:var(--gold-deep);background:rgba(143,111,44,.12);border:1px solid var(--docline);border-radius:8px;padding:6px 12px;white-space:nowrap}
+.sopdoc .role .what{font-size:13px;line-height:1.7}
+.sopdoc .role .what b{color:var(--docink)}
+.sopdoc .tmpl{margin-top:8px;background:rgba(34,28,18,.06);border-right:3px solid var(--gold-deep);border-radius:0 6px 6px 0;padding:9px 13px;font-size:12px;color:var(--docink);line-height:1.7}
+.sopdoc .tmpl .h{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--docmut);font-weight:800;margin-bottom:4px}
+
+/* terminal */
+.term{margin-top:18px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#080705}
+.term .bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--panel);border-bottom:1px solid var(--line)}
+.term .bar i{width:11px;height:11px;border-radius:50%}.term .bar i:nth-child(1){background:var(--bad)}.term .bar i:nth-child(2){background:var(--gold)}.term .bar i:nth-child(3){background:var(--ok)}
+.term .bar span{margin-inline-start:8px;font-size:10.5px;color:var(--muted);letter-spacing:.1em;font-weight:700;font-family:var(--mono)}
+.term pre{margin:0;padding:16px 18px;font-family:var(--mono);font-size:11.5px;line-height:1.85;color:var(--paper);direction:ltr;text-align:left;white-space:pre-wrap;min-height:110px}
+.term pre .c{color:var(--muted)}.term pre .g{color:var(--ok)}.term pre .v{color:var(--gold-s)}.term pre .p{color:var(--copper)}
+.term pre .cur{display:inline-block;width:8px;height:14px;background:var(--gold-s);vertical-align:-2px;animation:blink 1s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+.term .note{padding:10px 18px;border-top:1px solid var(--line);background:rgba(196,123,58,.06);font-size:11.5px;color:var(--copper);font-weight:700}
+
+.note{margin-top:30px;border-right:3px solid var(--gold);background:rgba(201,162,76,.06);padding:15px 19px;border-radius:0 13px 13px 0;color:var(--muted);font-size:13.5px;max-width:84ch}
+.note b{color:var(--gold-s)}.note code{color:var(--paper);font-family:var(--mono);direction:ltr;unicode-bidi:embed;font-size:11.5px}
+.foot{margin-top:34px;border-top:1px solid var(--line);padding:20px 0 50px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.foot b{color:var(--gold);font-family:var(--disp);font-weight:600}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<div class="bg"><div class="grid"></div><div class="scan"></div><div class="glow"></div><div class="grain"></div></div>
+
+<header class="top"><div class="in">
+  <div class="brand">
+    <svg width="38" height="26" viewBox="0 0 200 132" fill="none" aria-hidden="true">
+      <defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6e09a"/><stop offset=".5" stop-color="#d6af57"/><stop offset="1" stop-color="#8f6f2c"/></linearGradient></defs>
+      <g stroke="url(#lg)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <line x1="6" y1="52" x2="44" y2="52" stroke-width="5"/><line x1="2" y1="64" x2="48" y2="64"/><line x1="10" y1="76" x2="44" y2="76" stroke-width="4"/>
+        <path d="M60 48 L98 20 L136 48"/><path d="M66 48 V92 H132 V48"/><path d="M132 92 V62 H150 L162 74 V92"/>
+        <path d="M72 86 V76 H76 V71 H92 V76 H96 V86" stroke-width="4"/><rect x="104" y="63" width="20" height="23" rx="2" stroke-width="4"/>
+      </g><g fill="url(#lg)"><circle cx="90" cy="99" r="9"/><circle cx="150" cy="99" r="9"/></g>
+    </svg>
+    <span class="nm">مُتنقِّل</span>
+  </div>
+  <span class="safety"><span class="d"></span> سلامة السلوك العامل 100% · تعديلان مضافان فقط</span>
+</div></header>
+
+<div class="w">
+
+  <!-- ═══ الافتتاح: الفاتورة تُبنى حيّة ═══ -->
+  <section class="open">
+    <div class="reveal">
+      <span class="kick"><span class="pulse"></span> الدفعة الثالثة · المسار ج</span>
+      <h1 class="h1">الفاتورة <em>تُبنى</em><br>أمام عينك</h1>
+      <p class="lede">هذه ليست لافتةً عن الفاتورة — إنها الفاتورة نفسها: تُكتب سطراً سطراً، يُرسم رمزها الزكوي مربّعاً مربّعاً، ويُختم عليها <b>«الدفع عند الإكمال»</b>. نفس المنطق سيُسلَّم ككودٍ حقيقي أدناه: وحدة فاتورة + QR زكوي + صفحة عرض + وثيقتا تشغيل.</p>
+      <div class="ministats">
+        <div class="ms s1"><div class="v">12</div><div class="k">ملف بالدفعة</div></div>
+        <div class="ms s2"><div class="v">10</div><div class="k">جديد</div></div>
+        <div class="ms s3"><div class="v">2</div><div class="k">تعديل مضاف</div></div>
+      </div>
+    </div>
+
+    <!-- ورقة الفاتورة -->
+    <div class="docwrap reveal" style="transition-delay:.12s" id="docwrap">
+      <div class="invoice">
+        <div class="inv-top">
+          <div class="inv-brand">
+            <svg width="40" height="27" viewBox="0 0 200 132" fill="none" aria-hidden="true">
+              <g stroke="#8f6f2c" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none">
+                <line x1="6" y1="52" x2="44" y2="52" stroke-width="5"/><line x1="2" y1="64" x2="48" y2="64"/><line x1="10" y1="76" x2="44" y2="76" stroke-width="4"/>
+                <path d="M60 48 L98 20 L136 48"/><path d="M66 48 V92 H132 V48"/><path d="M132 92 V62 H150 L162 74 V92"/>
+                <path d="M72 86 V76 H76 V71 H92 V76 H96 V86" stroke-width="4"/><rect x="104" y="63" width="20" height="23" rx="2" stroke-width="4"/>
+              </g><g fill="#8f6f2c"><circle cx="90" cy="99" r="9"/><circle cx="150" cy="99" r="9"/></g>
+            </svg>
+            <div><div class="nm">مُتنقِّل</div><div class="sub">مؤسسة نقل وتركيب الأثاث · الرقم الضريبي 300000000000003</div></div>
+          </div>
+          <div class="inv-tag"><div class="t">فاتورة ضريبية مبسّطة</div><div class="no">INV-2026-00147</div></div>
+        </div>
+
+        <div class="inv-meta">
+          <div class="blk"><div class="k">التاريخ</div><div class="v">2026-07-25</div></div>
+          <div class="blk"><div class="k">الوقت</div><div class="v">14:27</div></div>
+          <div class="blk r"><div class="k">العميل</div><div class="v">أحمد العميل</div></div>
+        </div>
+
+        <table class="inv-table">
+          <thead><tr><th>البند</th><th class="l">الكمية</th><th class="l">المبلغ</th></tr></thead>
+          <tbody>
+            <tr class="inv-row"><td>نقل عفش كامل — فك وتغليف وتركيب</td><td class="num">1</td><td class="num">500.00</td></tr>
+            <tr class="inv-row"><td>رسوم المسافة (9.4 كم)</td><td class="num">1</td><td class="num">94.00</td></tr>
+          </tbody>
+        </table>
+
+        <div class="inv-totals">
+          <div class="ln"><span>المجموع قبل الضريبة</span><span class="v">594.00</span></div>
+          <div class="ln"><span>ضريبة القيمة المضافة 15%</span><span class="v" id="vat">0.00</span></div>
+          <div class="ln grand"><span>الإجمالي شامل الضريبة</span><span class="v" id="grand">0.00</span></div>
+        </div>
+
+        <div class="inv-foot">
+          <div class="qr" id="qr"></div>
+          <div class="note">رمز زكوي (TLV base64) متوافق مع المرحلة الأولى من الفوترة الإلكترونية. <b>لا دفع الآن</b> — يُحصَّل بعد الإكمال.</div>
+        </div>
+
+        <div class="stamp" id="stamp"><div><div class="a">مُتنقِّل</div><div class="b">الدفع<br>عند الإكمال</div><div class="c">PAID ON COMPLETION</div></div></div>
+      </div>
+
+      <div class="taxbar">
+        <div class="lab"><span>حساب الضريبة 15% (يُحسب آلياً ولا يُطلب مقدّماً)</span><b id="taxPct">0%</b></div>
+        <div class="bar"><i id="taxBar"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ الملفات ═══ -->
+  <div class="sec-t reveal">الملفات — <em>بترتيب الوضع الآمن</em></div>
+  <div class="tabs reveal">
+    <button class="tab on" data-p="code">ملفات الكود (10)</button>
+    <button class="tab" data-p="docs">الوثائق التشغيلية (2)</button>
+  </div>
+  <div class="pane on" data-p="code" id="paneCode"></div>
+  <div class="pane" data-p="docs" id="paneDocs"></div>
+
+  <!-- ═══ SOP ═══ -->
+  <div class="sec-t reveal">الوثيقة التشغيلية — <em>SOP يوم الإطلاق</em></div>
+  <div class="sopdoc reveal">
+    <h3>إجراءات التشغيل القياسية — من يردّ، ومتى، وكيف</h3>
+    <div class="role"><span class="who">موظف الواتساب<br>9ص – 10م</span><div class="what"><b>الرد خلال 5 دقائق</b> على كل رسالة واردة، باستخدام القوالب أدناه. خارج الساعة: ردٌّ آلي مؤجَّل + تنبيه لأول موظف مناوب صباحاً.
+      <div class="tmpl"><div class="h">قالب — طلب جديد</div>أهلاً بك في مُتنقِّل 🌿 وصلنا طلبك رقم [X]، سيتواصل معك فريقنا خلال [15] دقيقة لتأكيد الموعد. وتذكّر: لا تدفع شيئاً الآن — الدفع بعد أن ترى أثاثك مركّباً.</div>
+      <div class="tmpl"><div class="h">قالب — تأكيد تحويل بنكي</div>تم استلام إيصالك لطلب [X] ✓ جارٍ مراجعة العملية، وسنفعّل طلبك خلال [30] دقيقة كحدٍّ أقصى.</div>
+    </div></div>
+    <div class="role"><span class="who">مُؤكِّد التحويل<br>المحاسب</span><div class="what"><b>يراجع التحويل البنكي</b> خلال 30 دقيقة من وصول الإيصال: يطابق المبلغ + اسم المرسل + رقم الطلب، ثم يضغط «تأكيد» في لوحة الإدارة فتتغيّر حالة الدفع إلى «مدفوع». عند أي تعارض: يُعلَّق الطلب ويُبلَّغ العميل فوراً.</div></div>
+    <div class="role"><span class="who">مُصعِّد الشكاوى<br>المدير المناوب</span><div class="what"><b>يتسلّم أي شكوى تلف أو تأخير</b> خلال ساعة. الإجراء: توثيق بالصور → فتح مطالبة تأمين إن وُجدت بوليصة → تعويض أو إعادة تنفيذ وفق <b>سياسة الضمان</b>. لا يُغلق طلبٌ بشكوى مفتوحة.</div></div>
+  </div>
+
+  <!-- ═══ terminal ═══ -->
+  <div class="sec-t reveal">ترتيب الوضع — <em>مرجعياً، لا الآن</em></div>
+  <div class="term reveal">
+    <div class="bar"><i></i><i></i><i></i><span>apply-track-c.sh — عندما تكون جاهزاً</span></div>
+    <pre id="term"></pre>
+    <div class="note">⏸ لا تُنفّذ الآن — ترتيبٌ مرجعي فقط. بعد الوضع: شغّل <span style="color:var(--gold-s)">prisma migrate</span> إن أضفت حقول الفاتورة، ثم اختبر لاحقاً بأمرٍ منك.</div>
+  </div>
+
+  <div class="note reveal"><b>لماذا التعديلان المضافان آمنان؟</b> <code>app.module.ts</code> يُضاف إليه سطر import + عنصرٌ في مصفوفة <code>imports</code> لتسجيل وحدة الفاتورة — لا يُزيل شيئاً، فـ auth/orders/health تعمل كما هي. وصفحة النجاح (التي أضفتُها أنا في الدفعة أ) يُضاف إليها رابط «عرض الفاتورة» فقط. السلوك العامل لا يتغيّر، لذا مقياس السلامة = 100%.</div>
+
+  <div class="foot"><span>مدير المشروع · دفعة الفاتورة والعمليات · <b>PM-012</b></span><span>المسار ج · 12 ملف · ZATCA TLV · SOP · يتبعه د (اختبارات + مراقبة)</span></div>
+</div>
+
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)};
+var $$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+
+/* ── QR matrix تمثيلي (finder patterns + بيانات من seed ثابت) ── */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function isFinder(r,c){function b(o){return o<7}var R=r,C=c;
+ function blk(or,oc){return r>=or&&r<or+7&&c>=oc&&c<oc+7}
+ return blk(0,0)||blk(0,18)||blk(18,0)}
+function finderOn(r,c){function inb(or,oc){return r>=or&&r<or+7&&c>=oc&&c<oc+7}
+ function ring(or,oc){var lr=r-or,lc=c-oc;return lr===0||lr===6||lc===0||lc===6||(lr>=2&&lr<=4&&lc>=2&&lc<=4)}
+ if(inb(0,0))return ring(0,0);if(inb(0,18))return ring(0,18);if(inb(18,0))return ring(18,0);return false}
+var N=25,qr=$('#qr'),seed=mulberry32(20260725),cells=[];
+for(var r=0;r<N;r++)for(var c=0;c<N;c++){var i=document.createElement('i');
+ var on=isFinder(r,c)?finderOn(r,c):(seed()>0.5);if(on)i.className='on';qr.appendChild(i);cells.push(i)}
+
+/* ── عدّ المجموع والضريبة ── */
+function countTo(el,to,dur){var t0=performance.now();(function s(t){var p=Math.min(1,(t-t0)/dur);var v=(to*(1-Math.pow(1-p,3))).toFixed(2);el.textContent=v;if(p<1)requestAnimationFrame(s)})(t0)}
+
+/* ── تسلسل الفاتورة عند الظهور ── */
+var played=false;
+function playInvoice(){
+ if(played)return;played=true;
+ var rows=$$('.inv-row');rows.forEach(function(rw,i){setTimeout(function(){rw.classList.add('in')},300+i*260)});
+ setTimeout(function(){countTo($('#vat'),89.10,900);countTo($('#grand'),683.10,1100)},300+rows.length*260);
+ var qd=300+rows.length*260+700;
+ setTimeout(function(){$('#qr').classList.add('go');cells.forEach(function(c,i){if(c.classList.contains('on'))c.style.animationDelay=(i*0.6)+'ms'})},qd);
+ setTimeout(function(){$('#stamp').classList.add('in')},qd+900);
+ setTimeout(function(){$('#taxBar').style.width='100%';var t0=performance.now();(function s(t){var p=Math.min(1,(t-t0)/1400);$('#taxPct').textContent=Math.round(15*(1-Math.pow(1-p,3)))+'%';if(p<1)requestAnimationFrame(s)})(t0)},qd+1300);
+}
+var ioDoc=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){playInvoice();ioDoc.disconnect()}})},{threshold:.3});
+ioDoc.observe($('#docwrap'));
+
+/* ── قوائم الملفات ── */
+var CODE=[
+ {n:'ج١',p:'apps/api/src/modules/invoices/invoice.dto.ts',t:'new',w:'أنواع الاستجابة للفاتورة (InvoiceLine, InvoiceData) — <b>additive</b>.',tg:['جديد','آمن']},
+ {n:'ج٢',p:'apps/api/src/modules/invoices/zatca.ts',t:'new',w:'ترميز TLV الزكوي + base64 (المرحلة الأولى) — <b>صحيح تقنياً</b>، لا يعتمد على env.',tg:['جديد','آمن']},
+ {n:'ج٣',p:'apps/api/src/modules/invoices/invoice.service.ts',t:'new',w:'يبني الفاتورة من الطلب + يولّد QR. يقرأ ZATCA_VAT_NUMBER إن وُجد وإلا placeholder <b>دون كسر</b>.',tg:['جديد','آمن']},
+ {n:'ج٤',p:'apps/api/src/modules/invoices/invoice.controller.ts',t:'new',w:'GET /invoices/:orderNumber محمي، يتحقق أن الطالب = العميل أو admin.',tg:['جديد','آمن']},
+ {n:'ج٥',p:'apps/api/src/modules/invoices/invoice.module.ts',t:'new',w:'تسجيل الوحدة وتصدير الخدمة.',tg:['جديد','آمن']},
+ {n:'ج٦',p:'apps/api/src/app.module.ts',t:'mod',w:'<b>تعديل مضاف:</b> سطر import + عنصر في imports[] لتسجيل InvoicesModule. لا يزيل شيئاً.',tg:['تعديل','سطران']},
+ {n:'ج٧',p:'apps/web/src/lib/invoice.ts',t:'new',w:'formatSAR + مولّد مصفوفة QR للعرض (تمثيلي بصرياً، الـ payload الحقيقي في الـ base64).',tg:['جديد','آمن']},
+ {n:'ج٨',p:'apps/web/src/app/invoice/[orderNumber]/page.tsx',t:'new',w:'صفحة الفاتورة: ورقة قابلة للطباعة + QR + ختم + «الدفع بعد الإكمال».',tg:['جديد','آمن']},
+ {n:'ج٩',p:'apps/web/src/app/guarantee/page.tsx',t:'new',w:'صفحة سياسة الضمان بشكل مستند مرقّم — لا بطاقات.',tg:['جديد','آمن']},
+ {n:'ج١٠',p:'apps/web/src/app/request/success/page.tsx',t:'mod',w:'<b>تعديل مضاف:</b> رابط «عرض الفاتورة» (الملف لي، آمن).',tg:['تعديل','آمن']}
+];
+var DOCS=[
+ {n:'ج١١',p:'docs/operations/SOP.md',t:'new',w:'إجراءات التشغيل: أدوار + أوقات + قوالب واتساب + إجراء تأكيد التحويل + تصعيد الشكاوى.',tg:['وثيقة','تشغيلي']},
+ {n:'ج١٢',p:'docs/operations/guarantee-policy.md',t:'new',w:'نموذج صياغة بوليصة التأمين (يملأه المستخدم مع المؤمِّن) + النص المعروض للعميل.',tg:['وثيقة','قرار لك']}
+];
+function build(id,arr){var el=$(id);arr.forEach(function(f){var r=document.createElement('div');r.className='frow '+f.t;
+ r.innerHTML='<div class="ix">'+f.n.replace(/[أ-ي]/g,'')+'</div><div class="meta"><div class="path">'+f.p+'</div><div class="why">'+f.w+'</div></div><div class="tags"><span class="tag '+f.t+'">'+f.tg[0]+'</span><span class="tag safe">'+f.tg[1]+'</span></div>';
+ el.appendChild(r)})}
+build('#paneCode',CODE);build('#paneDocs',DOCS);
+
+/* تبويبات */
+$$('.tab').forEach(function(t){t.addEventListener('click',function(){$$('.tab').forEach(function(x){x.classList.remove('on')});t.classList.add('on');
+ $$('.pane').forEach(function(p){p.classList.toggle('on',p.getAttribute('data-p')===t.getAttribute('data-p'))});
+ var pan=$('.pane.on');var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
+ $$('.pane.on .frow').forEach(function(e,i){e.style.transitionDelay=(i*55)+'ms';io.observe(e)})})});
+
+/* terminal typewriter */
+var LINES=[
+ '<span class="c"># ١) ضع ملفات الكود (ج١–ج٥ جديدة، ج٦ تعديل سطرين في app.module)</span>',
+ '<span class="c"># ٢) إن أضفت حقول فاتورة للـ schema لاحقاً:</span>',
+ '<span class="g">cd</span> apps/api && npx prisma migrate dev --name invoices',
+ '<span class="c"># ٣) متغيرات الزكاة (اختياري الآن — لا يكسر بدونه)</span>',
+ '<span class="p">echo</span> "ZATCA_VAT_NUMBER=300000000000003" >> apps/api/.env',
+ '<span class="c"># ٤) صفحات الـ Web + الوثائق (ج٧–ج٢) — additive بالكامل</span>',
+ '<span class="c"># ٥) فحص السلامة قبل أي تشغيل:</span>',
+ '<span class="p">bash</span> scripts/deploy-check.sh   <span class="c"># أخضر؟ → المسار ج مغلق</span> <span class="cur"></span>'
+];
+var term=$('#term'),li=0,ci=0;
+function renderUpTo(upto,extra){var out='';for(var i=0;i<upto;i++)out+=LINES[i]+'\n';
+ var raw=LINES[upto],plain=raw.replace(/<[^>]+>/g,''),res='',pc=0;
+ for(var k=0;k<raw.length;k++){var ch=raw[k];if(ch==='<'){var cl=raw.indexOf('>',k);res+=raw.slice(k,cl+1);k=cl;continue;}if(pc<extra){res+=ch;pc++;}}
+ return out+res+'<span class="cur"></span>'}
+function type(){if(li>=LINES.length)return;var plain=LINES[li].replace(/<[^>]+>/g,'');
+ if(ci<plain.length){ci++;term.innerHTML=renderUpTo(li,ci);setTimeout(type,16)}else{li++;ci=0;setTimeout(type,240)}}
+
+function go(){
+ $$('.pane.on .frow').forEach(function(r,i){setTimeout(function(){r.classList.add('in')},200+i*70)});
+ setTimeout(type,700);
+}
+var ioT=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){go();ioT.disconnect()}})},{threshold:.12});
+ioT.observe($('#paneCode'));
+
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+$$('.reveal').forEach(function(e,i){e.style.transitionDelay=(i*55)+'ms';io.observe(e)});
+})();
+</script>
+</body>
+</html>

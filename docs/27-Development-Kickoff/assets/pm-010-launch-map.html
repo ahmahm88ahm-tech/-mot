@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مُتنقِّل · خريطة الإطلاق — 12 خطوة للسوق</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0d0c0a;--ink2:#141210;--panel:#1a1713;--panel2:#221d17;--line:#3a3022;
+--gold:#c9a24c;--gold-s:#ecd28a;--gold-deep:#8f6f2c;--paper:#ece5d8;--muted:#8c8273;
+--ok:#3fae7e;--bad:#d9534a;--copper:#c47b3a;--teal:#2f7d8c;
+--disp:'Reem Kufi',sans-serif;--body:'Tajawal',sans-serif;
+--metal:linear-gradient(180deg,#f6e09a 0%,#d6af57 42%,#b78f3c 70%,#8f6f2c 100%)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--paper);background:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--gold);color:var(--ink)}
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+.bg .grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;opacity:.1;mask-image:radial-gradient(130% 95% at 82% -10%,#000 12%,transparent 64%)}
+.bg .glow{position:absolute;width:46vw;height:46vw;right:-14vw;top:-16vw;background:radial-gradient(circle,rgba(201,162,76,.12),transparent 60%)}
+.bg .glow.b{right:auto;left:-15vw;top:auto;bottom:-22vw;background:radial-gradient(circle,rgba(47,125,140,.1),transparent 60%)}
+.bg .grain{position:absolute;inset:0;opacity:.04;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.w{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 22px}
+
+.top{position:sticky;top:0;z-index:60;backdrop-filter:blur(13px);background:rgba(13,12,10,.78);border-bottom:1px solid var(--line)}
+.top .in{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 22px;max-width:1240px;margin:0 auto;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .nm{font-family:var(--disp);font-weight:700;font-size:19px;background:var(--metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cdwrap{display:flex;align-items:center;gap:12px}
+.cdwrap .lbl{font-size:10px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;font-weight:800}
+.cd{display:flex;gap:6px;font-variant-numeric:tabular-nums}
+.cd .u{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:4px 8px;text-align:center;min-width:42px}
+.cd .u b{display:block;font-family:var(--disp);font-weight:700;font-size:16px;color:var(--gold-s);line-height:1}
+.cd .u small{font-size:8px;color:var(--muted);letter-spacing:.06em}
+
+/* افتتاحية split غير مركزية */
+.open{display:grid;grid-template-columns:1.25fr .75fr;gap:50px;align-items:center;padding:66px 0 34px}
+@media(max-width:900px){.open{grid-template-columns:1fr;gap:34px}}
+.kick{font-size:11px;letter-spacing:.34em;color:var(--muted);text-transform:uppercase;font-weight:800;display:inline-flex;align-items:center;gap:9px}
+.kick .pulse{width:8px;height:8px;border-radius:50%;background:var(--gold);position:relative}
+.kick .pulse::after{content:"";position:absolute;inset:0;border-radius:50%;background:inherit;animation:ping 1.6s infinite}
+@keyframes ping{0%{transform:scale(1);opacity:.7}80%,100%{transform:scale(2.8);opacity:0}}
+.h1{font-family:var(--disp);font-weight:700;font-size:clamp(33px,5.6vw,64px);line-height:1.03;margin-top:16px;letter-spacing:-.015em}
+.h1 em{font-style:normal;background:var(--metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.h1 .no{color:var(--bad);position:relative;white-space:nowrap}
+.h1 .no svg{position:absolute;left:-4%;top:42%;width:108%;height:30%}
+.h1 .no path{stroke:var(--bad);stroke-width:9;fill:none;stroke-linecap:round;stroke-dasharray:300;stroke-dashoffset:300;animation:strike 1s .5s cubic-bezier(.6,.1,.2,1) forwards}
+@keyframes strike{to{stroke-dashoffset:0}}
+.lede{color:var(--paper);opacity:.84;margin-top:20px;font-size:16.5px;max-width:54ch}
+.lede b{color:var(--gold-s)}
+
+/* مقياس العتبتين */
+.gaugebox{position:relative;background:linear-gradient(180deg,var(--panel),var(--ink2));border:1px solid var(--line);border-radius:22px;padding:26px 24px}
+.gaugebox h4{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.grow{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.grow:last-child{margin-bottom:0}
+.ring{position:relative;width:74px;height:74px;flex-shrink:0}
+.ring svg{transform:rotate(-90deg)}
+.ring .trk{fill:none;stroke:var(--line);stroke-width:8}
+.ring .prg{fill:none;stroke-width:8;stroke-linecap:round;stroke-dasharray:201;stroke-dashoffset:201;transition:stroke-dashoffset 1.8s cubic-bezier(.2,.8,.2,1)}
+.ring.soft .prg{stroke:url(#gsoft)}.ring.gen .prg{stroke:url(#ggen)}
+.ring .mid{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--disp);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums}
+.ring.soft .mid{color:var(--gold-s)}.ring.gen .mid{color:var(--teal);filter:brightness(1.5)}
+.grow .meta .t{font-weight:800;font-size:15px}
+.grow .meta .d{color:var(--muted);font-size:12px;margin-top:2px}
+.grow .meta .d b{color:var(--ok)}
+.builtbar{margin-top:6px;height:7px;background:var(--ink);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.builtbar i{display:block;height:100%;width:0;background:repeating-linear-gradient(45deg,var(--copper) 0 5px,transparent 5px 10px);border-radius:99px;transition:width 1.6s ease}
+.builtbar + .bl{font-size:11px;color:var(--muted);margin-top:6px}
+.builtbar + .bl b{color:var(--copper)}
+
+/* الخطوة النابضة */
+.nowpulse{position:relative;border-radius:20px;padding:3px;background:var(--metal);margin:8px 0 0;box-shadow:0 24px 60px -30px rgba(201,162,76,.5);animation:breathe 3.6s ease-in-out infinite}
+@keyframes breathe{0%,100%{box-shadow:0 24px 60px -30px rgba(201,162,76,.4)}50%{box-shadow:0 28px 70px -28px rgba(201,162,76,.7)}}
+.nowpulse .inner{background:linear-gradient(180deg,#161310,#0c0b09);border-radius:17px;padding:18px 20px;display:flex;align-items:center;gap:16px}
+.nowpulse .n{width:46px;height:46px;border-radius:13px;background:rgba(201,162,76,.14);color:var(--gold-s);display:grid;place-items:center;font-family:var(--disp);font-weight:700;font-size:18px;flex-shrink:0}
+.nowpulse .tt{font-weight:800;font-size:15px}
+.nowpulse .dd{color:var(--muted);font-size:12.5px;margin-top:3px}
+.nowpulse .tag{font-size:9px;font-weight:800;letter-spacing:.1em;color:var(--gold-s);border:1px solid rgba(201,162,76,.4);background:rgba(201,162,76,.08);padding:3px 9px;border-radius:999px;display:inline-block;margin-bottom:6px}
+
+/* المسارات الأربعة — timelines عمودية */
+.sec-t{font-family:var(--disp);font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:54px 0 8px}
+.sec-t em{font-style:normal;color:var(--gold)}
+.lanes{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:22px}
+@media(max-width:1000px){.lanes{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.lanes{grid-template-columns:1fr}}
+.lane{position:relative}
+.lane .head{border-radius:16px 16px 0 0;padding:16px 16px 14px;border:1px solid var(--line);border-bottom:0;position:relative;overflow:hidden}
+.lane .head::before{content:"";position:absolute;inset:0 0 auto 0;height:3px}
+.lane.a .head::before{background:var(--metal)}.lane.b .head::before{background:linear-gradient(90deg,var(--copper),#7c4a1e)}
+.lane.c .head::before{background:linear-gradient(90deg,var(--ok),#1f6b4c)}.lane.d .head::before{background:linear-gradient(90deg,var(--teal),var(--gold-deep))}
+.lane .head .ln{font-size:10px;letter-spacing:.18em;font-weight:800;text-transform:uppercase}
+.lane.a .head .ln{color:var(--gold-s)}.lane.b .head .ln{color:var(--copper)}.lane.c .head .ln{color:var(--ok)}.lane.d .head .ln{color:#6fc0cf}
+.lane .head .ht{font-family:var(--disp);font-weight:700;font-size:17px;margin-top:5px;line-height:1.2}
+.lane .head .hc{font-size:11px;color:var(--muted);margin-top:5px}
+.lane .body{border:1px solid var(--line);border-top:0;border-radius:0 0 16px 16px;padding:6px 12px 14px;position:relative}
+.lane .body::before{content:"";position:absolute;top:0;bottom:14px;right:30px;width:2px;background:var(--line)}
+.step{position:relative;display:grid;grid-template-columns:38px 1fr;gap:12px;padding:12px 0 4px;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}
+.step.in{opacity:1;transform:none}
+.step .dot{width:38px;height:38px;border-radius:11px;border:2px solid var(--line);background:var(--ink);display:grid;place-items:center;font-family:var(--disp);font-weight:700;font-size:14px;color:var(--muted);position:relative;z-index:2;transition:.4s}
+.step.in .dot{border-color:var(--gold-deep);color:var(--gold-s)}
+.sc{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:12px 13px;transition:.3s}
+.sc:hover{transform:translateX(-3px);border-color:rgba(201,162,76,.35)}
+.sc .st{font-weight:800;font-size:13.5px;line-height:1.3}
+.sc .who{display:inline-flex;align-items:center;gap:5px;font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px;margin-top:7px}
+.who.code{background:rgba(201,162,76,.14);color:var(--gold-s)}.who.you{background:rgba(196,123,58,.16);color:var(--copper)}.who.plat{background:rgba(47,125,140,.18);color:#6fc0cf}
+.sc .ev{font-size:11px;color:var(--muted);margin-top:7px;line-height:1.5}
+.sc .ev b{color:var(--paper);font-weight:700}
+.sc .tm{font-size:10px;color:var(--gold-deep);font-weight:700;margin-top:7px;font-variant-numeric:tabular-nums}
+
+/* شريط التلخيص */
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+@media(max-width:760px){.summary{grid-template-columns:1fr}}
+.sm{border:1px solid var(--line);border-radius:16px;padding:18px 20px;background:linear-gradient(180deg,var(--panel),var(--ink2));position:relative;overflow:hidden}
+.sm .k{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.sm .v{font-family:var(--disp);font-weight:700;font-size:30px;margin-top:8px;font-variant-numeric:tabular-nums}
+.sm.s1 .v{color:var(--copper)}.sm.s2 .v{color:var(--gold-s)}.sm.s3 .v{color:var(--ok)}
+.sm .d{font-size:12px;color:var(--muted);margin-top:6px}
+
+/* قسم الصدق */
+.truth{margin-top:46px;border:1px solid rgba(217,83,74,.3);border-radius:20px;padding:28px 26px;background:linear-gradient(180deg,rgba(217,83,74,.05),transparent);position:relative;overflow:hidden}
+.truth::before{content:"";position:absolute;top:0;right:0;width:120px;height:120px;background:radial-gradient(circle,rgba(217,83,74,.12),transparent 70%)}
+.truth .tk{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--bad);font-weight:800}
+.truth h3{font-family:var(--disp);font-weight:700;font-size:clamp(22px,3.4vw,32px);margin-top:10px;line-height:1.15}
+.truth h3 em{font-style:normal;color:var(--gold-s)}
+.truth p{color:var(--paper);opacity:.82;margin-top:12px;font-size:14.5px;max-width:70ch}
+.truth p b{color:var(--gold-s)}
+.truth .pts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:20px}
+.truth .pt{border:1px solid var(--line);border-radius:13px;padding:13px 15px;background:var(--ink2)}
+.truth .pt .h{font-weight:800;font-size:13.5px;color:var(--gold-s)}
+.truth .pt .b{font-size:12px;color:var(--muted);margin-top:4px}
+
+.note{margin-top:30px;border-right:3px solid var(--gold);background:rgba(201,162,76,.06);padding:15px 19px;border-radius:0 13px 13px 0;color:var(--muted);font-size:13.5px;max-width:80ch}
+.note b{color:var(--gold-s)}.note code{color:var(--paper);direction:ltr;unicode-bidi:embed;font-size:12px}
+.foot{margin-top:34px;border-top:1px solid var(--line);padding:20px 0 50px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.foot b{color:var(--gold);font-family:var(--disp);font-weight:600}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<div class="bg"><div class="grid"></div><div class="glow"></div><div class="glow b"></div><div class="grain"></div></div>
+
+<header class="top"><div class="in">
+  <div class="brand">
+    <svg width="38" height="26" viewBox="0 0 200 132" fill="none" aria-hidden="true">
+      <defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6e09a"/><stop offset=".5" stop-color="#d6af57"/><stop offset="1" stop-color="#8f6f2c"/></linearGradient></defs>
+      <g stroke="url(#lg)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <line x1="6" y1="52" x2="44" y2="52" stroke-width="5"/><line x1="2" y1="64" x2="48" y2="64"/><line x1="10" y1="76" x2="44" y2="76" stroke-width="4"/>
+        <path d="M60 48 L98 20 L136 48"/><path d="M66 48 V92 H132 V48"/><path d="M132 92 V62 H150 L162 74 V92"/>
+        <path d="M72 86 V76 H76 V71 H92 V76 H96 V86" stroke-width="4"/><rect x="104" y="63" width="20" height="23" rx="2" stroke-width="4"/>
+      </g><g fill="url(#lg)"><circle cx="90" cy="99" r="9"/><circle cx="150" cy="99" r="9"/></g>
+    </svg>
+    <span class="nm">مُتنقِّل</span>
+  </div>
+  <div class="cdwrap"><span class="lbl">الإطلاق التجريبي خلال</span>
+    <div class="cd"><div class="u"><b id="d">--</b><small>يوم</small></div><div class="u"><b id="h">--</b><small>س</small></div><div class="u"><b id="m">--</b><small>د</small></div><div class="u"><b id="s">--</b><small>ث</small></div></div>
+  </div>
+</div></header>
+
+<div class="w">
+
+  <section class="open">
+    <div class="reveal">
+      <span class="kick"><span class="pulse"></span> الجواب الصادق · PM-010</span>
+      <h1 class="h1">ليس <span class="no">100%<svg viewBox="0 0 200 40" preserveAspectRatio="none"><path d="M4,26 C60,8 140,34 196,14"/></svg></span><br>بل <em>عتبةٌ تُغلق</em></h1>
+      <p class="lede">لا منتج حيّ «مكتمل 100%» — كلها تُطلق عند عتبة ثم تُحسَّن. لذا لن أبيعك رقماً وهمياً. الموجود فعلاً: <b>12 خطوة</b> في 4 مسارات. تُغلق المسارات أ+ب+ج = <b>إطلاق تجريبي</b> (أول عميل يدفع بعد العمل). بعد د = <b>مُطلق</b>. والأساس التقني مبني فعلاً — المتبقي إغلاقٌ واختبار، لا بناءٌ من الصفر.</p>
+
+      <div class="nowpulse reveal" style="transition-delay:.1s">
+        <div class="inner">
+          <div class="n">أ١</div>
+          <div><span class="tag">الخطوة النابضة الآن</span><div class="tt">اختبار دورة الطلب حياً</div><div class="dd">لا كود جديد — شغّل /request، أرسل طلباً، وأعد لي الإيصال من /orders. هذا وحده يُغلق أول بوابة.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gaugebox reveal" style="transition-delay:.14s">
+      <svg width="0" height="0"><defs>
+        <linearGradient id="gsoft" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6e09a"/><stop offset="1" stop-color="#8f6f2c"/></linearGradient>
+        <linearGradient id="ggen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fae7e"/><stop offset="1" stop-color="#2f7d8c"/></linearGradient>
+      </defs></svg>
+      <h4>مقياس العتبتين</h4>
+      <div class="grow">
+        <div class="ring soft"><svg width="74" height="74" viewBox="0 0 74 74"><circle class="trk" cx="37" cy="37" r="32"/><circle class="prg" id="rSoft" cx="37" cy="37" r="32"/></svg><div class="mid" id="nSoft">0/9</div></div>
+        <div class="meta"><div class="t">نحو الإطلاق التجريبي</div><div class="d">المسارات أ+ب+ج · <b>0 مغلقة</b> من 9</div></div>
+      </div>
+      <div class="grow">
+        <div class="ring gen"><svg width="74" height="74" viewBox="0 0 74 74"><circle class="trk" cx="37" cy="37" r="32"/><circle class="prg" id="rGen" cx="37" cy="37" r="32"/></svg><div class="mid" id="nGen">0/12</div></div>
+        <div class="meta"><div class="t">نحو الإطلاق العام</div><div class="d">كل المسارات · 0 مغلقة من 12</div></div>
+      </div>
+      <div class="builtbar"><i id="built"></i></div>
+      <div class="bl">الأساس التقني المبني فعلاً ≈ <b>30%</b> — طلب UI + backend + هوية + بنية. المتبقي إغلاق، لا إنشاء.</div>
+    </div>
+  </section>
+
+  <div class="sec-t reveal">الخطوات الاثنتا عشرة — <em>مساراً مساراً</em></div>
+  <div class="lanes reveal" id="lanes"></div>
+
+  <div class="summary reveal">
+    <div class="sm s1"><div class="k">المغلق رسمياً الآن</div><div class="v">0 / 12</div><div class="d">لا بوابة أُغلقت بإيصالٍ بعد — وهذا طبيعي، نحن عند خط البداية التنفيذي.</div></div>
+    <div class="sm s2"><div class="k">المتبقي للإطلاق التجريبي</div><div class="v">9</div><div class="d">المسارات أ+ب+ج. تُنجز تقديرياً في ≈ 7–9 أيام عمل مركّزة.</div></div>
+    <div class="sm s3"><div class="k">المتبقي للإطلاق العام</div><div class="v">+3</div><div class="d">المسار د: E2E + أول عملاء + مراقبة. ≈ 2–3 أسابيع مع التغذية الراجعة.</div></div>
+  </div>
+
+  <div class="truth reveal">
+    <span class="tk">صدقٌ قبل كل شيء</span>
+    <h3>«جاهز 100%» <em>لا يوجد</em> — والعتبة الصحيحة اسمها: إطلاق تجريبي</h3>
+    <p>حين تسأل «100%»، فالجواب الأمين: لا، ولن يكون — لأن 100% تعني «لا تحسين ممكناً»، وهذا غير صحيح لأي منتج. لكن <b>«جاهز ليأخذ أول ريال حقيقي»</b> سؤالٌ له جوابٌ واضح ومحدود: إغلاق المسارات أ+ب+ج. عندها تُطلق لعددٍ صغير، تراقب، تُصلح، ثم تفتح. هذا ليس نقصاً — هذه هي الطريقة التي تُبنى بها المنتجات التي تعيش.</p>
+    <div class="pts">
+      <div class="pt"><div class="h">لماذا ليس 100%؟</div><div class="b">لأن 100% وهمٌ تسويقي. المنتجات الحقيقية تُطلق عند عتبة وتتحسّن بالعملاء، لا في الفراغ.</div></div>
+      <div class="pt"><div class="h">ما العتبة الحقيقية؟</div><div class="b">أول طلب حقيقي يُنشأ، يُنفَّذ، يُدفَع بعد العمل، ويُراقَب — دون أن ينكسر شيء.</div></div>
+      <div class="pt"><div class="h">ما دورك أنت؟</div><div class="b">4 قرارات لا يحلّها كود: SOP، ZATCA، التأمين، وأول العملاء. بدونها لا إطلاق مهما برمجنا.</div></div>
+    </div>
+  </div>
+
+  <div class="note reveal"><b>الخطوة الفورية بعد هذه الخريطة:</b> نفّذ <b>أ١</b> الآن (تشغيل + إيصال، بلا كود). فور إغلاقها أُسلّم لك <b>أ٢ + أ٣</b> (شاشة تأكيد الطلب + صفحتا الخصوصية والشروط) — والكود الجاهز لهما مرفق تحت اللوحة مباشرة، لتطبقه وتغلق المسار أ كاملاً في نفس الجلسة.</div>
+
+  <div class="foot"><span>مدير المشروع · خريطة الإطلاق · <b>PM-010</b></span><span>12 خطوة · 4 مسارات · عتبتان · صفر وعود وهمية</span></div>
+</div>
+
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)};
+var $$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+
+/* عدّاد تنازلي تقديري للإطلاق التجريبي (21 يوماً من 25 يوليو 2026) */
+var T=new Date('2026-08-15T00:00:00').getTime();
+function pad(n){return String(n).padStart(2,'0')}
+function tick(){var x=Math.max(0,T-Date.now());$('#d').textContent=pad(Math.floor(x/864e5));$('#h').textContent=pad(Math.floor(x%864e5/36e5));$('#m').textContent=pad(Math.floor(x%36e5/6e4));$('#s').textContent=pad(Math.floor(x%6e4/1e3))}
+tick();setInterval(tick,1000);
+
+/* المسارات والخطوات */
+var LANES=[
+ {c:'a',ln:'مسار أ · تقني',ht:'يُغلق أول طلب',hc:'يكمل الدورة',steps:[
+   {n:'أ١',t:'اختبار دورة الطلب حياً',w:'you',wl:'أنت',ev:'<b>دليل:</b> طلب يظهر في /orders بعد إرساله من /request.',tm:'≈ 0.5 يوم'},
+   {n:'أ٢',t:'شاشة تأكيد + حالة الدفع',w:'code',wl:'كود',ev:'<b>دليل:</b> /request/success برقم الطلب + «لا دفع الآن»، وشارة في dashboard.',tm:'≈ 1 يوم'},
+   {n:'أ٣',t:'الخصوصية + الشروط',w:'code',wl:'كود',ev:'<b>دليل:</b> /privacy-policy و /terms منشورتان، رابطهما في الفوتر.',tm:'≈ 0.5 يوم'}
+ ]},
+ {c:'b',ln:'مسار ب · نشر',ht:'يخرج من المؤقّت',hc:'دومين حقيقي',steps:[
+   {n:'ب١',t:'دومين + DNS + SSL',w:'plat',wl:'منصّة',ev:'<b>دليل:</b> motanaqil.com يفتح بـ https وقفل أخضر.',tm:'≈ 1 يوم'},
+   {n:'ب٢',t:'نشر Backend إنتاجي',w:'plat',wl:'منصّة',ev:'<b>دليل:</b> /health على الدومين = 200، وDB إنتاجية مزروعة.',tm:'≈ 1 يوم'},
+   {n:'ب٣',t:'نشر Web + متغيرات',w:'plat',wl:'منصّة',ev:'<b>دليل:</b> الواجهة على الدومين تتصل بالـ Backend الحقيقي.',tm:'≈ 0.5 يوم'}
+ ]},
+ {c:'c',ln:'مسار ج · تشغيلي',ht:'قراراتٌ لك',hc:'قانون + عمليات',steps:[
+   {n:'ج١',t:'SOP العمليات',w:'you',wl:'أنت',ev:'<b>دليل:</b> وثيقة: من يردّ 9ص–10م، من يؤكد التحويل، قالب ردّ واتساب.',tm:'≈ 1 يوم'},
+   {n:'ج٢',t:'ZATCA فاتورة مبسّطة',w:'code',wl:'كود+أنت',ev:'<b>دليل:</b> فاتورة بـ QR + رقم ضريبي تُصدر عند الإكمال.',tm:'≈ 1–2 يوم'},
+   {n:'ج٣',t:'بوليصة تأمين + صياغة',w:'you',wl:'أنت',ev:'<b>دليل:</b> بوليصة فعلية + نص «ضمان» مطابق لها (لا وعد بلا غطاء).',tm:'متغيّر'}
+ ]},
+ {c:'d',ln:'مسار د · إطلاق',ht:'أول عملاء',hc:'مراقبة + تحسين',steps:[
+   {n:'د١',t:'E2E على الإنتاج',w:'code',wl:'كود',ev:'<b>دليل:</b> سيناريو كامل أخضر على الدومين الحيّ.',tm:'≈ 1 يوم'},
+   {n:'د٢',t:'أول 5–10 عملاء',w:'you',wl:'أنت',ev:'<b>دليل:</b> طلبات حقيقية + feedback مُسجّل.',tm:'≈ 1–2 أسبوع'},
+   {n:'د٣',t:'مراقبة + حلقة تحسين',w:'code',wl:'كود+أنت',ev:'<b>دليل:</b> تنبيهات + لوحة + مراجعة أسبوعية.',tm:'مستمر'}
+ ]}
+];
+var WHO={code:['code','كود'],you:['you','أنت'],plat:['plat','منصّة']};
+var lanesEl=$('#lanes'),delay=0;
+LANES.forEach(function(L){
+ var lane=document.createElement('div');lane.className='lane '+L.c;
+ var head='<div class="head"><div class="ln">'+L.ln+'</div><div class="ht">'+L.ht+'</div><div class="hc">'+L.hc+'</div></div>';
+ var body='<div class="body">';
+ L.steps.forEach(function(s){
+   var w=WHO[s.w];
+   body+='<div class="step" data-d="'+(delay++)+'"><div class="dot">'+s.n.replace(/[أ-ي]/g,'')+'</div>'+
+     '<div class="sc"><div class="st">'+s.t+'</div><span class="who '+w[0]+'">'+w[1]+'</span>'+
+     '<div class="ev">'+s.ev+'</div><div class="tm">'+s.tm+'</div></div></div>';
+ });
+ body+='</div>';
+ lane.innerHTML=head+body;lanesEl.appendChild(lane);
+});
+
+/* إضاءة متسلسلة + مقاييس */
+function lightUp(){
+ $$('.step').forEach(function(el){var d=+el.getAttribute('data-d');setTimeout(function(){el.classList.add('in')},300+d*90)});
+ /* المقاييس: 0 مغلقة حالياً */
+ var C=2*Math.PI*32;
+ setTimeout(function(){$('#rSoft').style.strokeDashoffset=C;$('#rGen').style.strokeDashoffset=C;$('#built').style.width='30%'},400);
+}
+var ioL=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){lightUp();ioL.disconnect()}})},{threshold:.12});
+ioL.observe($('#lanes'));
+
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+$$('.reveal').forEach(function(e,i){e.style.transitionDelay=(i*55)+'ms';io.observe(e)});
+})();
+</script>
+</body>
+</html>

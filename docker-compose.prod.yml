@@ -1,0 +1,29 @@
+# override للإنتاج — يُدمج مع docker-compose.yml:
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+name: motanaqil-prod
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile.prod
+    restart: always
+    env_file: [apps/api/.env.production]
+    ports: ["4000:4000"]
+    # بلا volumes للكود — الصورة مكتفية ذاتياً
+    deploy:
+      resources:
+        limits: { cpus: '1.0', memory: 1G }
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+    restart: always
+    env_file: [apps/web/.env.production]
+    ports: ["3000:3000"]
+    depends_on:
+      api:
+        condition: service_healthy

@@ -1,0 +1,19 @@
+{
+  "name": "motanaqil-monorepo",
+  "version": "3.25.0-RC1",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "cd apps/web && npm run dev",
+    "build": "cd apps/web && npm run build",
+    "start": "cd apps/web && npm run start"
+  },
+  "dependencies": {
+    "next": "14.2.5"
+  },
+  "devDependencies": {
+    "typescript": "5.5.3"
+  }
+}

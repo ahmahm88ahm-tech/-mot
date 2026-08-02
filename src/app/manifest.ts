@@ -13,9 +13,9 @@ export default function manifest(): MetadataRoute.Manifest {
     dir: 'rtl',
     orientation: 'portrait-primary',
     icons: [
-      { url: '/icon?192', sizes: '192x192', type: 'image/png' },
-      { url: '/icon?512', sizes: '512x512', type: 'image/png' },
-      { url: '/icon?maskable', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+      { src: '/icon?192', sizes: '192x192', type: 'image/png' },
+      { src: '/icon?512', sizes: '512x512', type: 'image/png' },
+      { src: '/icon?maskable', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
     ],
   };
 }
